@@ -6,8 +6,14 @@ Google Earth Engine scripts to add snow statistics to GMBA polygons (**work in p
   The output tables can be downloaded here: [https://drive.google.com/drive/folders/1sdy7m6pqYhM-pGBwa4VFLVVuCNBzZj1I](https://drive.google.com/drive/folders/1sdy7m6pqYhM-pGBwa4VFLVVuCNBzZj1I)
   
   The mean snow probability over 01-Sep-2000 to 31-Aug-2023 can be visualized here: [https://sgascoin.users.earthengine.app/view/snow-in-gmba](https://sgascoin.users.earthengine.app/view/snow-in-gmba)
-  
-![gmbaSnow](https://github.com/sgascoin/snow-in-gmba/assets/29677722/614f710f-d646-4714-9263-faad07794dad)
+
+### Fig. 1 (all elevations)
+
+<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/eea5a9cb-4836-49ad-877d-bbe71190482b" width="800" />
+
+### Fig. 2  (2000-2500 m)
+
+<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/e9bd919d-20e9-4aec-b019-160cdd1403ba" width="800" />
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
