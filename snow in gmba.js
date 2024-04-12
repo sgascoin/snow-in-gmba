@@ -7,7 +7,7 @@ var yrParam = {min:2000, max:2022},
     elevParam = {low:2500, up:3000},
     m0 = 9; // first month of water year (9 = north hemisphere)
 
-// inout datasets    
+// input datasets    
 var gmba = ee.FeatureCollection("users/sgascoin/GMBA_lite"),
     mod10a1 = ee.ImageCollection("MODIS/061/MOD10A1"),
     dem250 = ee.Image("USGS/GMTED2010_FULL");
