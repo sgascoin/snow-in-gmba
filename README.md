@@ -19,7 +19,7 @@ Google Earth Engine scripts to add snow statistics to GMBA polygons (**work in p
 
 ### Fig. 3: peak SWE (SWE on Apr/Oct 1st)
 
-<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/57977834-287a-4318-9edd-d39cb8ee4e3a" width="800" />
+<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/074788d4-6bcf-48c0-b712-feea8aeed8d2" width="800" />
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
