@@ -2,12 +2,9 @@
 // IACS joint body on mountain snow cover, working group 2 
 // simon.gascoin@univ-tlse3.fr
 
-// elevation band
-var elevParam = {low:0, up:9000};
-
 // config
 var config = {
-  name:'snowProba'+'_'+elevParam.low+elevParam.up+'_', 
+  name:'snowProba', 
   ymin:2000, 
   ymax:2022
 };
@@ -29,7 +26,6 @@ var waterMask = ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24')
 
 // dem mask
 var dem = dem250.select('mea').resample();
-var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
 
 /*
 // smaller domain for debugging
@@ -62,5 +58,29 @@ var getVoi = function(y1,hem){
 // load function to fill gmba 
 var addToGmba = require('users/sgascoin/iacs_jb_wg2:addToGmba.js');
 
-// run computations
-addToGmba.addToGmba(config,coi,gmba,getVoi);
+// min elevation of the lower bound
+var low0 = 0;
+
+// max elevation of the lower bound
+var low1 = 9000;
+
+// output filename prefix
+var name0 = config.name;
+
+// elevation band loop (client-side)
+while (low0 < low1) {
+  // define elevation range
+  var elevParam = {low:low0, up:low0 + 500};
+  
+  // adjust output filename
+  config.name = name0+'_'+elevParam.low+elevParam.up+'_';
+  
+  // create DEM mask
+  var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
+  
+  // run computations
+  addToGmba.addToGmba(config,coi,gmba,getVoi);
+  
+  // increment lower elevation
+  low0 = low0 + 500;
+}
