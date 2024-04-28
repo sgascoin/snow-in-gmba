@@ -1,9 +1,11 @@
 # snow in gmba
-Google Earth Engine scripts to add snow statistics to Global Mountain Biodiversity Assessment (GMBA) polygons (**work in progress**)
+Google Earth Engine scripts to add snow statistics to Global Mountain Biodiversity Assessment (GMBA) polygons (**work in progress**). Each script listed below compute a snow indicator from a public dataset and outputs the spatial mean, standard deviation and pixel count by polygon and hydrological year and also their averages over the entire period.
 
-- `snowProba.js` ([source](snowProba.js)): this script computes the mean annual "snow probability" from MOD10A1 and adds derived spatial statistics to every GMBA polygon. A snow probability is the ratio of the number of snow days to the number of clear-sky days. Here the snow probability is computed by hydrological year and expressed in days per year. The script exports the mean, standard deviation and pixel count for every hydrological year and also their averages over the entire period (Fig. 1, Fig. 2). Hydrological years begin on Sep 01 (North hemisphere polygons) or Mar 01 (South hemisphere polygons). Output file naming: `snowProba_zminzmax_yminymax.csv` (`zmin`, `zmax`: elevation range, `ymin`, `ymax`: beginning year of the first and last hydrological year). 
+- `snowProba.js` ([source](snowProba.js)): this script computes the mean annual "snow probability" from MOD10A1 and adds derived spatial statistics to every GMBA polygon. A snow probability is the ratio of the number of snow days to the number of clear-sky days. Here the snow probability is computed by hydrological year and expressed in days per year (Fig. 1, Fig. 2). Hydrological years begin on Sep 01 (north hemisphere) or Mar 01 (south hemisphere). Output file naming: `snowProba_zminzmax_yminymax.csv` (`zmin`, `zmax`: elevation range, `ymin`, `ymax`: beginning year of the first and last hydrological year). 
 
-- `peakSwe.js` ([source](peakSwe.js)): this script extracts the annual "peak SWE" from ERA5-Land and adds derived spatial statistics to every GMBA polygon. Peak SWE is defined as the SWE value on Oct 01 (South hemisphere polygons) or Apr 01 (North hemisphere polygons) and expressed in meters. The script exports the mean, standard deviation and pixel count for every hydrological year and also their averages over the period (years given in the filename). (Fig. 3). Output file naming: `peakSwe_yminymax.csv` (`zmin`, `zmax`: elevation range, `ymin`, `ymax`: first and last year of the period). 
+- `peakSwe.js` ([source](peakSwe.js)): this script extracts the annual "peak SWE" from ERA5-Land and adds derived spatial statistics to every GMBA polygon. Peak SWE is defined as the SWE value on Apr 01 (north hemisphere) or Oct 01 (south hemisphere) and expressed in meters (Fig. 3). Output file naming: `peakSwe_yminymax.csv` (`zmin`, `zmax`: elevation range, `ymin`, `ymax`: first and last year of the period). 
+
+- `snowMeltDate.js` ([source](snowMeltDate.js)): this script extracts the annual "snow melt-out date", SMOD (i.e. first day of no snow cover) from MOD10A1 and adds derived spatial statistics to every GMBA polygon. The SMOD is defined as the first date of zero percent snow cover since Jan 01 (North hemisphere polygons) or Jun 01 (South hemisphere polygons) and expressed in days. (Fig.4). Output file naming: `snowMeltDate_zminzmax_yminymax.csv` (`zmin`, `zmax`: elevation range, `ymin`, `ymax`: year of the period start, i.e. Jan/Jun 01). 
 
   The output tables can be downloaded here: [https://drive.google.com/drive/folders/1sdy7m6pqYhM-pGBwa4VFLVVuCNBzZj1I](https://drive.google.com/drive/folders/1sdy7m6pqYhM-pGBwa4VFLVVuCNBzZj1I)
   
@@ -17,9 +19,13 @@ Google Earth Engine scripts to add snow statistics to Global Mountain Biodiversi
 
 <img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/e9bd919d-20e9-4aec-b019-160cdd1403ba" width="800" />
 
-### Fig. 3: peak SWE (SWE on Apr/Oct 1st)
+### Fig. 3: peak SWE (SWE on Apr/Oct 1st) - all elevations
 
 <img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/074788d4-6bcf-48c0-b712-feea8aeed8d2" width="800" />
+
+### Fig. 4: Snow melt out date (days since Jan/Jun 1st) - all elevations
+
+<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/ee832ae4-f704-4c64-9175-bceebeaff3e0" width="800" />
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
