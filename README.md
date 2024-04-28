@@ -26,6 +26,7 @@ Google Earth Engine scripts to add snow statistics to Global Mountain Biodiversi
 ### Fig. 4: Snow melt out date (days since Jan/Jun 1st) - all elevations
 
 <img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/ee832ae4-f704-4c64-9175-bceebeaff3e0" width="800" />
+<img src="https://github.com/sgascoin/snow-in-gmba/assets/29677722/51988828-080f-44de-b956-53e28f5c945c" width="500" />
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
