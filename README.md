@@ -32,7 +32,7 @@ Google Earth Engine scripts to add various snow-related statistics to Global Mou
 
 ## Fig. 5: 01 April SWE in 2024 relative anomaly vs. 1991-2020 climatology from ERA5-Land
 
-![Layout SWE 1st Apr anomaly 2024](https://github.com/sgascoin/snow-in-gmba/assets/29677722/448916e0-174b-44f3-ba55-1114ae0a2e8b)
+![Layout SWE 1st Apr anomaly 2024](https://github.com/sgascoin/snow-in-gmba/assets/29677722/515e872a-dfa7-4074-b71b-93322d8de62a)
 
 
 ## Note
