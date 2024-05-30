@@ -34,6 +34,8 @@ Google Earth Engine scripts to add various snow-related statistics to Global Mou
 
 ![Layout SWE 1st Apr anomaly 2024](https://github.com/sgascoin/snow-in-gmba/assets/29677722/515e872a-dfa7-4074-b71b-93322d8de62a)
 
+Check our interactive map of the 01 April SWE anomaly: https://jb-smsc.github.io/gmba-swe/
+
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
