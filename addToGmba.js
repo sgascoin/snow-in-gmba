@@ -5,6 +5,8 @@
 var addToGmba = function(config,coi,gmba,getVoi){
   
   // spatial statistics to export
+  // weighting: 
+  // https://groups.google.com/g/google-earth-engine-developers/c/k_-bszYSIck/m/Irksn_H-CgAJ
   var reducer = ee.Reducer.mean()
     .combine({
       reducer2: ee.Reducer.stdDev(),
@@ -46,7 +48,7 @@ var addToGmba = function(config,coi,gmba,getVoi){
     // get gmba polygon id
     var id = e.get('GMBA_V2_ID');
     // compute polygon centroid latitude
-    var lat = e.geometry().centroid().coordinates().getNumber(1);
+    var lat = e.geometry().centroid(1).coordinates().getNumber(1);
     // select N or S hemisphere
     var statGmbaYear = ee.Algorithms.If(lat.gt(0),statGmbaYearN,statGmbaYearS);
     // get corresponding stats
@@ -104,12 +106,14 @@ var addToGmba = function(config,coi,gmba,getVoi){
     selectors:['GMBA_V2_ID','count','mean','means','stdDevs','years'] 
     }); 
   
+  return statGmbaYearAgg;
+  /*
   // export results as a FeatureView asset
   Export.table.toFeatureView({
     collection: statGmbaYearAgg.select(['GMBA_V2_ID','MapName','mean']),
     assetId: fname.getInfo(),
     description: fname.getInfo()
-  });
+  });*/
 };
 
 exports = {
