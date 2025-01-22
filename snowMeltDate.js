@@ -122,8 +122,10 @@ var getVoi = function(y1,hem){
     .reduce(ee.Reducer.min(5))
     // Rename the bands - band names were altered by previous operation.
     .rename(['snowCover', 'calDoy', 'relDoy', 'millis', 'year'])
-    // Apply the mask.
-    .updateMask(analysisMask)
+    // mask water
+    .updateMask(waterMask)
+    // mask non-valid elevations
+    .updateMask(demMask)
     // Set the year as a property for filtering by later.
     .set('year', y1);
 
@@ -158,7 +160,6 @@ config.name = ee.String(name0+'_').cat(zmin).cat(zmax).cat('_');
 
 // create DEM mask
 var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
-var analysisMask = waterMask.multiply(demMask);
 
 // run computations
 addToGmba.addToGmba(config,coi,gmba,getVoi);
@@ -175,7 +176,6 @@ while (low0 < low1) {
 
   // create DEM mask
   var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
-  var analysisMask = waterMask.multiply(demMask);
 
   // run computations
   addToGmba.addToGmba(config,coi,gmba,getVoi);
