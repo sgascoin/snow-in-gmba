@@ -92,9 +92,10 @@ var addToGmba = function(config,coi,gmba,getVoi){
   // aggregate by gmba polygon
   var statGmbaYearAgg = gmba.map(aggregateYear);
   
-  // copy config in the filename
-  var fname = ee.String(
-      config.name+config.ymin+config.ymax);
+  // construct filename from config parameters
+  var fname = config.name
+    .cat(ee.Number(config.ymin).format())
+    .cat(ee.Number(config.ymax).format());
   
   // export results as a csv file
   Export.table.toDrive({
