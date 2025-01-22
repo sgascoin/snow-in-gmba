@@ -6,12 +6,26 @@
 var config = {
   name:'snowMeltDate', 
   ymin:2000, 
-  ymax:2022
+  ymax:2023
 };
 
 // input datasets
-var gmba = ee.FeatureCollection("users/sgascoin/GMBA_lite");
+var gmba0 = ee.FeatureCollection("users/sgascoin/GMBA_lite");
 var dem250 = ee.Image("USGS/GMTED2010_FULL");
+
+// function to set a (multi-)polygon to non-geodesic 
+var setNoGeodesic = function(ft){
+  var coords = ft.geometry().coordinates();
+  var poly = ee.Geometry.MultiPolygon({
+    coords:coords,
+    geodesic: false
+  });
+ return ft.setGeometry(poly);
+};
+
+// to avoid projection issues with SR-ORG:6974 PLANAR (MOD10A1),
+// set GMBA to non-geodesic 
+var gmba = gmba0.map(setNoGeodesic);
 
 // collection of interest
 var coi = ee.ImageCollection("MODIS/061/MOD10A1").select('NDSI_Snow_Cover');
@@ -27,10 +41,10 @@ var waterMask = ee.Image('MODIS/MOD44W/MOD44W_005_2000_02_24')
 // dem mask
 var dem = dem250.select('mea').resample();
 
-/*
+//*/
 // smaller domain for debugging
 gmba = gmba.filterBounds(debug);
-*/
+//*/
 
 
 // https://developers.google.com/earth-engine/tutorials/community/identifying-first-day-no-snow 
@@ -134,14 +148,31 @@ var step = 500;
 // output filename prefix
 var name0 = config.name;
 
+// all elevations
+var elevParam = {low:low0, up:low1};
+
+// adjust output filename
+var zmin = ee.Number(elevParam.low).format('%04d');
+var zmax = ee.Number(elevParam.up).format('%04d');
+config.name = ee.String(name0+'_').cat(zmin).cat(zmax).cat('_');
+
+// create DEM mask
+var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
+var analysisMask = waterMask.multiply(demMask);
+
+// run computations
+addToGmba.addToGmba(config,coi,gmba,getVoi);
+
 // elevation band loop (client-side)
 while (low0 < low1) {
   // define elevation range
   var elevParam = {low:low0, up:low0 + step};
   
   // adjust output filename
-  config.name = name0+'_'+elevParam.low+elevParam.up+'_';
-  
+  var zmin = ee.Number(elevParam.low).format('%04d');
+  var zmax = ee.Number(elevParam.up).format('%04d');
+  config.name = ee.String(name0+'_').cat(zmin).cat(zmax).cat('_');
+
   // create DEM mask
   var demMask = dem.gte(elevParam.low).and(dem.lt(elevParam.up));
   var analysisMask = waterMask.multiply(demMask);
