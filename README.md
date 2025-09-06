@@ -36,6 +36,9 @@ Google Earth Engine scripts to add various snow-related statistics to Global Mou
 
 Check our interactive map of the 01 April SWE anomaly: https://jb-smsc.github.io/gmba-swe/
 
+## Fig. 6: 01 April SWE in 2025 relative anomaly vs. 1991-2020 climatology from ERA5-Land
+
+<img width="2014" height="1507" alt="Layout SWE 1st OctApr anomaly 2025" src="https://github.com/user-attachments/assets/58fdac82-ceb1-4d2d-b145-19a2279adfbc" />
 
 ## Note
 This is a contribution to IACS joint body on mountain snow cover, working group 2 
